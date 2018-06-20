@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class PascalTriangle{
+	public static void main(String[] args){
+		Solution s = new Solution();
+		int[] arr = {1,3,5,5,6};
+		System.out.println(s.generate(1));
+	}
+}
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+        if (numRows == 0) return result;
+        else {
+        	List<Integer> row1 = new ArrayList<Integer>();
+        	row1.add(1);
+        	result.add(row1);
+        	for (int i = 1; i < numRows; i++) {
+        		List<Integer> l = new ArrayList<Integer>();
+        		List<Integer> pre = result.get(i - 1);
+        		l.add(1);
+        		for (int j = 1; j < i; j++) {
+        			l.add(pre.get(j - 1) + pre.get(j));
+        		}
+        		l.add(1);
+        		result.add(l);
+        	}
+        }
+        return result;
+    }
+}
